@@ -6,11 +6,23 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  fatherData: string = "";
-  sendmessage(){
-    this.fatherData = "father send message";
+  fatherData: {
+    data: string,
+    change:boolean
+  };
+  constructor(){
+    this.fatherData = {
+      data:"",
+      change : false
+    };
   }
-  message(i:string){
-    this.fatherData = i;
+  sendmessage(){
+   this.fatherData.data="你好， 我是父组件";
+   this.fatherData.change = true;
+  }
+  message(i:{data:any,change:boolean}){
+    if(i.change){
+      alert("父组件收到了消息,消息为"+i.data);
+    }
   }
 }

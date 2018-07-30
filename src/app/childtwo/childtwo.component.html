@@ -1,7 +1,9 @@
-<p>组件二</p>
+<h3>组件二</h3>
 <p>
   {{data}}
 </p>
-<button (click)="changemsg()">组件2改变service的值</button>
+<button (click)="changemsg()">给组件1发送消息</button>
 <br>
-<button (click)="see()">查看service值</button>
+<p *ngIf="this.together.t.change">
+  从组件1收到的消息+{{this.together.t.data}}
+</p>

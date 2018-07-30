@@ -9,44 +9,53 @@ import { BotherService } from '../bother.service';
   styleUrls: ['./childone.component.css']
 })
 export class ChildoneComponent implements OnInit {
-  beforemsg:any;
-  togethermsg:any;
-  @Input() childDataName:string ;
+  sendtwomsg:{
+    data:any,
+    change:boolean
+  }
+  sendbothermsg:{
+    data:any,
+    change:boolean
+  }
+  @Input() childDataName:{
+    data:any,
+    change:boolean
+  };
   @Output() message = new EventEmitter();
-  @ViewChild(ChildtwoComponent) child:ChildtwoComponent;
+  @ViewChild(ChildtwoComponent) childtwo:ChildtwoComponent;
   constructor(
     private together:TogetherService,
     private bother:BotherService
   ) {
+    this.sendtwomsg = {
+      data:"",
+      change : false
+    }
+    this.sendbothermsg = {
+      data:"",
+      change : false
+    }
   }
 
   ngOnInit() {
-    this.childDataName = "还没收到消息";
-    this.child.getData();
-    console.log(this.child.data);
+    // if(this.childDataName.change){
+    //   alert("收到消息，消息为"+this.childDataName.data);
+    //   this.childDataName.change = false;
+    // }
+    console.log(this.childtwo.data);
   }
   sendmessage(){
-    this.childDataName = "组件二发送的消息";
-    this.message.emit(this.childDataName);
+   this.childDataName.data = "你好,我是组件1";
+   this.childDataName.change = true;
+   this.message.emit(this.childDataName);
+  //  this.childDataName.change = false;
   }
   change(){
-    // this.msg = "我是组件1";
-    console.log(this.together.sendmsg("我是组件1"));
-  }
-  see(){
-    // console.log(this.together.m);
-    if(this.togethermsg != this.together.m){
-      this.togethermsg = this.together.m;
-      alert(this.togethermsg);
-      }  
+    this.bother.t.data = "你好,我是组件1"
+    this.bother.t.change = true;
   }
   send(){
-    console.log(this.bother.sendmessageto("组件1发送的消息"));
-  }
-  sendbother(){
-    if(this.beforemsg != this.bother.m){
-      this.beforemsg = this.bother.m;
-      alert(this.beforemsg);
-      }  
+    this.together.t.data = "你好,我是组件1"
+    this.together.t.change = true;
   }
 }

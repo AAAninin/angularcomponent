@@ -9,7 +9,6 @@ import { BotherService } from '../bother.service';
 })
 export class ChildtwoComponent implements OnInit {
   data = 1;
-  beforemsg:any;
   constructor(private together:TogetherService) { }
 
   ngOnInit() {
@@ -18,13 +17,7 @@ export class ChildtwoComponent implements OnInit {
     console.log("子组件的方法");
   }
   changemsg(){
-    console.log(this.together.sendmsg("我是组件二"));
+    this.together.m.data = "你好，我是组件2";
+    this.together.m.change = true;
   }
-  see(){
-    if(this.beforemsg != this.together.m){
-      this.beforemsg = this.together.m;
-      alert(this.beforemsg)
-      }
-  }
-
 }

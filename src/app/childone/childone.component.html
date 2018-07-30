@@ -1,21 +1,25 @@
-<p>
-  {{childDataName}}
-</p>
+
 <button (click)="sendmessage()">给父组件发送消息</button>
 <br>
+<p *ngIf="this.childDataName.change">
+  从父组件收到的消息+{{this.childDataName.data}}
+</p>
 <br>
 <br>
 <br>
 
-<button (click)="send()">给组件3发送消息</button>
-<br>
-<button (click)="sendbother()">查看和组件三之间的通信</button>
+<button (click)="send()">给组件2发送消息</button>
 <br>
 <br>
-
-<button (click)="change()">给组件二发送消息</button>
+<p *ngIf="this.together.m.change">
+    从组件2收到的消息+{{this.together.m.data}}
+</p>
 <br>
-<button (click)="see()">查看和组件二之间的通信</button>
+<button (click)="change()">给组件3发送消息</button>
+<br>
+<p *ngIf="this.bother.m.change">
+    从组件3收到的消息+{{this.bother.m.data}}
+</p>
 <br>
 
 <app-childtwo></app-childtwo>

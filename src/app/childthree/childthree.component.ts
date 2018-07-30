@@ -7,26 +7,23 @@ import { BotherService } from '../bother.service';
   styleUrls: ['./childthree.component.css']
 })
 export class ChildthreeComponent implements OnInit {
-  beforemsg:any;
-  @Input() childDataName:string ;
+  @Input() childDataName:{
+    data : any,
+    change: boolean
+  } ;
   @Output() message = new EventEmitter();
   constructor(private bother:BotherService) { }
 
   ngOnInit() {
-    this.childDataName = "还没收到消息";
+    
   }
   send(){
-    console.log(this.bother.sendmessageto("组件三发出的信息"));
-  }
-  seenbother(){
-    // console.log(this.bother.m);
-    if(this.beforemsg != this.bother.m){
-    this.beforemsg = this.bother.m;
-    alert(this.beforemsg)
-    }
+    this.bother.m.data = "你好，我是组件3";
+    this.bother.m.change = true;
   }
   sendmessage(){
-    this.childDataName = "组件三发送的消息";
+    this.childDataName.data = "你好，我是组件3";
+    this.childDataName.change = true;
     this.message.emit(this.childDataName);
   }
 }

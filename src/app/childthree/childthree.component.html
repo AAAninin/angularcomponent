@@ -1,13 +1,14 @@
 <p>
   childthree works!
 </p>
-<button (click)="send()">发送消息给组件1</button>
+<button (click)="send()">给组件1发送消息</button>
 <br>
+<p *ngIf="this.bother.t.change">
+    从组件1收到消息为+{{this.bother.t.data}}
+  </p>
 <br>
-<button (click)="seenbother()">查看和组件1的通信</button>
-<br>
-<br>
-<p>
-  {{childDataName}}
-</p>
 <button (click)="sendmessage()">给父组件发送消息</button>
+<br>
+<p *ngIf="this.childDataName.change">
+  从父组件收到消息为+{{this.childDataName.data}}
+</p>

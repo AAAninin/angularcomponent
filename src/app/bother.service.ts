@@ -4,10 +4,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BotherService {
-  m :any;
-  constructor() { }
-  sendmessageto(msg:string){
-    this.m = msg;
-    return this.m;
-  }
+  m :{
+    data:any,
+    change:boolean
+  };
+  t :{
+    data:any,
+    change:boolean
+  };
+  constructor() {
+    this.m = {
+      data:"",
+      change : false
+    }
+    this.t = {
+      data:"",
+      change : false
+    }
+   }
 }
