@@ -1,0 +1,15 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h3>
+  Father Component Part
+</h3>
+<p>
+  <button (click)="sendmessage()"> 发送给子组件消息</button>
+</p>
+<p>{{fatherData}}</p>
+<h3>
+  Child Component Part
+</h3>
+<app-childone [childDataName]='fatherData' (message)="message($event)"></app-childone>
+<br>
+<h3>兄弟组件</h3>
+<app-childthree [childDataName]='fatherData' (message)="message($event)"></app-childthree>
