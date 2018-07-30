@@ -12,12 +12,15 @@ export class ChildtwoComponent implements OnInit {
   constructor(private together:TogetherService) { }
 
   ngOnInit() {
+    this.together.eventBus.subscribe((value)=>{
+      // this.events.push(value+"-"+new Date());
+      alert("组件2收到的消息为"+value);
+    });
   }
   getData(){
     console.log("子组件的方法");
   }
   changemsg(){
-    this.together.m.data = "你好，我是组件2";
-    this.together.m.change = true;
+    this.together.twoeventBus.next("你好，我是组件2");
   }
 }

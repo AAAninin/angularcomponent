@@ -15,11 +15,13 @@ export class ChildthreeComponent implements OnInit {
   constructor(private bother:BotherService) { }
 
   ngOnInit() {
-    
+    this.bother.twoeventBus.subscribe((value)=>{
+      // this.events.push(value+"-"+new Date());
+      alert("组件3收到的消息为"+value);
+    });
   }
   send(){
-    this.bother.m.data = "你好，我是组件3";
-    this.bother.m.change = true;
+    this.bother.eventBus.next("你好，我是组件3");
   }
   sendmessage(){
     this.childDataName.data = "你好，我是组件3";

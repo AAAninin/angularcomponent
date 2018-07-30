@@ -27,14 +27,7 @@ export class ChildoneComponent implements OnInit {
     private together:TogetherService,
     private bother:BotherService
   ) {
-    this.sendtwomsg = {
-      data:"",
-      change : false
-    }
-    this.sendbothermsg = {
-      data:"",
-      change : false
-    }
+    
   }
 
   ngOnInit() {
@@ -42,6 +35,14 @@ export class ChildoneComponent implements OnInit {
     //   alert("收到消息，消息为"+this.childDataName.data);
     //   this.childDataName.change = false;
     // }
+    this.together.twoeventBus.subscribe((value)=>{
+      // this.events.push(value+"-"+new Date());
+      alert("组件1收到的消息为"+value);
+    });
+    this.bother.eventBus.subscribe((value)=>{
+      // this.events.push(value+"-"+new Date());
+      alert("组件1收到的消息为"+value);
+    });
     console.log(this.childtwo.data);
   }
   sendmessage(){
@@ -51,11 +52,9 @@ export class ChildoneComponent implements OnInit {
   //  this.childDataName.change = false;
   }
   change(){
-    this.bother.t.data = "你好,我是组件1"
-    this.bother.t.change = true;
+    this.bother.twoeventBus.next("你好，我是组件1");
   }
   send(){
-    this.together.t.data = "你好,我是组件1"
-    this.together.t.change = true;
+    this.together.eventBus.next("你好，我是组件1");
   }
 }

@@ -1,25 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subject } from '../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BotherService {
-  m :{
-    data:any,
-    change:boolean
-  };
-  t :{
-    data:any,
-    change:boolean
-  };
+  public twoeventBus:Subject<string> = new Subject<string>();
+
+  public eventBus:Subject<string> = new Subject<string>();
+
   constructor() {
-    this.m = {
-      data:"",
-      change : false
-    }
-    this.t = {
-      data:"",
-      change : false
-    }
+    
    }
 }
