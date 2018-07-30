@@ -7,7 +7,7 @@ import { BotherService } from '../bother.service';
   styleUrls: ['./childthree.component.css']
 })
 export class ChildthreeComponent implements OnInit {
-  bothermsg:any;
+  beforemsg:any;
   @Input() childDataName:string ;
   @Output() message = new EventEmitter();
   constructor(private bother:BotherService) { }
@@ -16,11 +16,14 @@ export class ChildthreeComponent implements OnInit {
     this.childDataName = "还没收到消息";
   }
   send(){
-    this.bothermsg = this.bother.sendmessageto("组件三发出的信息");
-    console.log(this.bothermsg);
+    console.log(this.bother.sendmessageto("组件三发出的信息"));
   }
   seenbother(){
-    console.log(this.bother.m);
+    // console.log(this.bother.m);
+    if(this.beforemsg != this.bother.m){
+    this.beforemsg = this.bother.m;
+    alert(this.beforemsg)
+    }
   }
   sendmessage(){
     this.childDataName = "组件三发送的消息";

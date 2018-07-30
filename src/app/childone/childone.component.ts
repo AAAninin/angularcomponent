@@ -9,8 +9,8 @@ import { BotherService } from '../bother.service';
   styleUrls: ['./childone.component.css']
 })
 export class ChildoneComponent implements OnInit {
-  msg : any;
-  messagebother:any;
+  beforemsg:any;
+  togethermsg:any;
   @Input() childDataName:string ;
   @Output() message = new EventEmitter();
   @ViewChild(ChildtwoComponent) child:ChildtwoComponent;
@@ -18,7 +18,7 @@ export class ChildoneComponent implements OnInit {
     private together:TogetherService,
     private bother:BotherService
   ) {
-   }
+  }
 
   ngOnInit() {
     this.childDataName = "还没收到消息";
@@ -31,17 +31,22 @@ export class ChildoneComponent implements OnInit {
   }
   change(){
     // this.msg = "我是组件1";
-    this.msg = this.together.sendmsg("我是组件1");
-    console.log(this.msg);
+    console.log(this.together.sendmsg("我是组件1"));
   }
   see(){
-    console.log(this.together.m);
+    // console.log(this.together.m);
+    if(this.togethermsg != this.together.m){
+      this.togethermsg = this.together.m;
+      alert(this.togethermsg);
+      }  
   }
   send(){
-    this.messagebother = this.bother.sendmessageto("组件1发送的消息");
-    console.log(this.messagebother);
+    console.log(this.bother.sendmessageto("组件1发送的消息"));
   }
   sendbother(){
-    console.log(this.bother.m);
+    if(this.beforemsg != this.bother.m){
+      this.beforemsg = this.bother.m;
+      alert(this.beforemsg);
+      }  
   }
 }
